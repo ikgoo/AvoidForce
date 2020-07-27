@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7015c3351ec910a409868df19fedfbdc, type: 3}
+  m_Name: GameLv_02
+  m_EditorClassIdentifier: 
+  level: 2
+  playerSpeed: 5
+  playerAngleSpeed: 6
+  enemyCount: 10
+  enemySpeed:
+    rangeStart: 6.830721
+    rangeEnd: 8.830723

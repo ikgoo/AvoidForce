@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ab7203b72488d4fa7651c84a9ea5fc, type: 3}
+  m_Name: GameAudio
+  m_EditorClassIdentifier: 
+  EntityType: 6
+  Name: "\uAC8C\uC784 \uC74C\uC545 \uAD00\uB9AC"
+  Description: "\uC804\uCCB4 \uAC8C\uC784 \uC74C\uC545 \uAD00\uB9AC"
+  Thumbnail: {fileID: 0}
+  isJustOnce: 0
+  isLifeTime: 0
+  lifeTime: 0
+  targetObj: {fileID: 0}
+  isDistance: 0
+  Distance: 0
+  isForever: 0
+  usePlayerPrefs: 1
+  defaultVolume: 1
+  volumes:
+  - name: music
+    volume: 1
+  - name: effect
+    volume: 1
