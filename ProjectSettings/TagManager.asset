@@ -9,6 +9,7 @@ TagManager:
   - Toggle Bg
   - Off Text
   - PlayerSide
+  - Laser
   layers:
   - Default
   - TransparentFX
