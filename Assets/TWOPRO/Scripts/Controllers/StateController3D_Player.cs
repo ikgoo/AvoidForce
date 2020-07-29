@@ -153,7 +153,10 @@ namespace TWOPRO.Scripts.TWOPRO
                             ChangePlayerColor(color);
 
                             comboCount.RuntimeValue= 0;
-                            stats.hp -= ((FireBall)interactable).damage;
+                            //if(stats.hp < ((FireBall)interactable).damage)
+                            //    stats.hp = 0;
+                            //else
+                            //    stats.hp -= ((FireBall)interactable).damage;
                         }
 
                         UpdateHUD();

@@ -33,6 +33,9 @@ namespace TWOPRO.Scripts.Managers
         /// <returns></returns>
         IEnumerator InitIntro()
         {
+            // 튜토리얼 정보 세팅
+            GetTutorial();
+
 #if UNITY_EDITOR
             DebugX.Log("Unity Editor 상태");
             yield return new WaitForSeconds(1.3f);

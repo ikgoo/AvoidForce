@@ -38,9 +38,16 @@ namespace TWOPRO.Scripts.Managers
                 spawnerMaster.StartSapwnMaster();
             }
 
-            //StartCoroutine("InitIntro");
-
         }
+
+        public override void PlayPlay()
+        {
+            if (isTutorial.RuntimeValue == false)
+            {
+                UIHelpManager.Instance.SelectHelp(HelpType.Tutorial01);
+            }
+        }
+
 
         public override void PlayEnd()
         {

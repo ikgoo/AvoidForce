@@ -74,9 +74,9 @@ namespace TWOPROLIB.Scripts.Managers
         public GameStateType InitGameStateType;
 
         /// <summary>
-        /// 튜토리얼 상태
+        /// 튜토리얼 상태(true : 했음, false : 안했음)
         /// </summary>
-        [Tooltip("튜토리얼 상태")]
+        [Tooltip("튜토리얼 상태(true : 했음, false : 안했음)")]
         public BooleanValue isTutorial;
 
         /// <summary>
@@ -544,10 +544,24 @@ namespace TWOPROLIB.Scripts.Managers
 
         }
 
-        public void debug1()
+        /// <summary>
+        /// 튜토리렁 정보 가져오기
+        /// </summary>
+        public void GetTutorial()
         {
-            DebugX.Log("test");
+            isTutorial.RuntimeValue = PlayerPrefs.GetInt("isTutorial") == 1 ? true : false;
         }
+        
+        /// <summary>
+        /// 튜토리얼 정보 저장
+        /// </summary>
+        public void SetTutorial()
+        {
+            PlayerPrefs.SetInt("isTutorial", isTutorial.RuntimeValue ? 1 : 0);
+        }
+
+        
+
         #endregion Public Method : End ===============================
 
 
