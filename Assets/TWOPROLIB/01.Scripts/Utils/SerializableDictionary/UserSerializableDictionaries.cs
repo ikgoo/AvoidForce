@@ -28,6 +28,10 @@ namespace TWOPRO.Utils
     [Serializable]
     public class MultiLangContentDictionary : SerializableDictionary<SystemLanguage, HelpContent> { }
 
+    [Serializable]
+    public class MultiLangContentDictionary2 : SerializableDictionary<SystemLanguage, HelpItem1> { }
+
+
     //public class MultiLangHelpContent : ScriptableObject
     //{
     //    public MultiLangContentDictionary multiLangContentDictionary;
@@ -67,6 +71,48 @@ namespace TWOPRO.Utils
         public string title;
         [Multiline]
         public string content;
+    }
+
+    [Serializable]
+    public class HelpMainData
+    {
+        //public HelpOption helpOption;
+        //public MultiLangContentDictionary2 helpMainData;
+
+        public Dictionary<string, string> helpMainData;
+    }
+
+    [Serializable]
+    public class HelpOption
+    {
+        public string ViewDialogObjName;
+        public string ViewDialogBtnObjName;
+        public float timeScale;
+        public float timeDelay;
+    }
+
+    [Serializable]
+    public class HelpItem1
+    {
+        public HelpOption helpOption;
+
+        public List<HelpItem2> helpItem2;
+    }
+
+    [Serializable]
+    public class HelpItem2
+    {
+        public HelpOption helpOption;
+
+        public string title;
+        public string content;
+
+        public List<GameObject> BeforeViewObj;
+        public List<GameObject> BeforeHideObj;
+
+        public List<GameObject> AfterViewObj;
+        public List<GameObject> AfterHideObj;
+
     }
 
     public enum Helptype

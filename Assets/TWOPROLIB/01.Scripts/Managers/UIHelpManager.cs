@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TWOPRO.Utils;
 using TWOPROLIB.ScriptableObjects;
 using UnityEditor;
 //using TWOPROLIB.Scripts.Util;
@@ -9,6 +10,7 @@ using UnityEngine;
 
 namespace TWOPROLIB.Scripts.Managers
 {
+
     /// <summary>
     /// 헬프 상태
     /// </summary>
@@ -73,6 +75,7 @@ namespace TWOPROLIB.Scripts.Managers
         /// </summary>
         [Tooltip("기본적으로 도움말 시 숨김")]
         public List<GameObject> defaultHidden;
+
     }
 
     /// <summary>
@@ -110,6 +113,9 @@ namespace TWOPROLIB.Scripts.Managers
 
     public class UIHelpManager : MonoBehaviour
     {
+        //public MultiLangContentDictionary2 helpMainData;
+        public HelpMainData helpMainData;
+
         /// <summary>
         /// 현재 진행중인 도움말 타입
         /// </summary>
@@ -149,9 +155,25 @@ namespace TWOPROLIB.Scripts.Managers
 
         void Start()
         {
+            InitHelp("help");
             InitHelp();
             AllHelpHide();
         }
+
+        private void InitHelp(string textAssetName)
+        {
+            TextAsset targetFile = Resources.Load<TextAsset>("ScriptableObjects/HelpControll/" + textAssetName.Replace(".json", ""));
+
+            try
+            {
+                helpMainData = JsonUtility.FromJson<HelpMainData>(targetFile.text);
+            }
+            catch(Exception ex)
+            {
+                int i = 0;
+            }
+        }
+
 
         /// <summary>
         /// 초기화
