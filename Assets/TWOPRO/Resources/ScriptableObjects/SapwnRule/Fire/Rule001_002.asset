@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa6c213c59cf164881fda0ce75ed375, type: 3}
+  m_Name: Rule001_002
+  m_EditorClassIdentifier: 
+  Desc: "\uC2A4\uD3EC\uB108 : 001\uBC88\n\uB8F0 : 001\uBC88"
+  NextRuleDelay: 5
+  NextRule: -1
+  FirstDelay: 0
+  ruleList:
+  - interactableRuleType: 1
+    startDeg: 220
+    endDeg: 140
+    FireCount: 8
+    fireDelay: 1
+    angleSpeed: 10
+    speed: 2
+    cancelCount: 
+    isRandomFireRule: 0
+    InteractableTypes: 

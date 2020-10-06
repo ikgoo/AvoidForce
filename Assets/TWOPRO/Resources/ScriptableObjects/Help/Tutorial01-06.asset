@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a50be18dda869042943282cd26776f7, type: 3}
+  m_Name: Tutorial01-06
+  m_EditorClassIdentifier: 
+  multiLangContentDictionary:
+    m_keys: 170000000a000000
+    m_values:
+    - title: "\uB3C4\uC6C0\uB9D0"
+      content: "\uC810\uC218\uB294 \uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 1\uC810\uC529
+        \uCD94\uAC00\uB429\uB2C8\uB2E4."
+    - title: Help
+      content: Scores are added by 1 point every certain time.

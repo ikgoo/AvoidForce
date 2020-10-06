@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a50be18dda869042943282cd26776f7, type: 3}
+  m_Name: Tutorial01-02
+  m_EditorClassIdentifier: 
+  multiLangContentDictionary:
+    m_keys: 170000000a000000
+    m_values:
+    - title: "\uB3C4\uC6C0\uB9D0"
+      content: "\uC911\uC559 \uC544\uB798\uC5D0 \uC788\uB294 \uB3D9\uADF8\uB780 \uBB3C\uCCB4\uAC00
+        \uD50C\uB808\uC774\uC774\uC5D0\uC694\r\n\uC88C\uC6B0\uB85C \uC870\uC815\uD558\uC5EC
+        \uC804\uBC29\uC5D0\uC11C \uC624\uB294 \uBD88\uAF43\uC744 \uD53C\uD558\uBA74
+        \uB418\uB294 \uAC8C\uC784\uC774\uC5D0\uC694."
+    - title: Help
+      content: 'The round object at the bottom of the center is the play
+
+        It''s
+        a game where you can adjust left and right to avoid the flame coming from
+        the front.'

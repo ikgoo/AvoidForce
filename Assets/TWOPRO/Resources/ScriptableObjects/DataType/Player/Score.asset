@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Score
   m_EditorClassIdentifier: 
   dersc: "\uC810\uC218"
-  val: 0
+  InitialValue: 20
+  RuntimeValue: 20

@@ -29,4 +29,4 @@ MonoBehaviour:
   - name: music
     volume: 1
   - name: effect
-    volume: 1
+    volume: 0

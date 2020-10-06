@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa6c213c59cf164881fda0ce75ed375, type: 3}
+  m_Name: TutorialRule001
+  m_EditorClassIdentifier: 
+  Desc: "\uD29C\uD1A0\uB9AC\uC5BC\uC6A9 \uC2A4\uD3F0\uB8F0"
+  NextRuleDelay: 8
+  NextRule: -1
+  FirstDelay: 1
+  ruleList:
+  - interactableRuleType: 1
+    startDeg: 177.5
+    endDeg: 177.5
+    FireCount: 4
+    fireDelay: 1
+    angleSpeed: 0
+    speed: 8
+    cancelCount: 
+    isRandomFireRule: 0
+    InteractableTypes: 00000000010000000200000003000000

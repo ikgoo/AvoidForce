@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TWOPRO/Scenes/000_IntroScene.unity
+    path: Assets/TWOPRO/01.Scenes/000_IntroScene.unity
     guid: 065d157ac96d92747943949acfac7069
   - enabled: 1
-    path: Assets/TWOPRO/Scenes/010_LoadingScene.unity
+    path: Assets/TWOPRO/01.Scenes/010_LoadingScene.unity
     guid: b0f6edaa483688d48b7375a553e07d22
   - enabled: 1
-    path: Assets/TWOPRO/Scenes/020_MenuScene.unity
+    path: Assets/TWOPRO/01.Scenes/020_MenuScene.unity
     guid: c6e56ecc584e63f44930caca7fb0ca39
   - enabled: 1
-    path: Assets/TWOPRO/Scenes/030_GamePlayScene.unity
+    path: Assets/TWOPRO/01.Scenes/030_GamePlayScene.unity
     guid: de2960e3a2f3d2942b24858505d8d0a7
   m_configObjects: {}

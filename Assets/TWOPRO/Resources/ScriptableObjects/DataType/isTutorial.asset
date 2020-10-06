@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: isTutorial
   m_EditorClassIdentifier: 
   dersc: "\uD29C\uD1A0\uB9AC\uC5BC \uC720\uBB34"
-  InitialValue: 0
-  RuntimeValue: 0
+  InitialValue: 1
+  RuntimeValue: 1
