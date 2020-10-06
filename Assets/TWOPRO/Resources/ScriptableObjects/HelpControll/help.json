@@ -1,6 +1,35 @@
 {
-    "helpMainData" : {
-       "a" : "a",
-       "a2" : "a2"
-    }
+    "helpMainData" : [
+        {
+            "Korean" : {
+                "helpOption" : {
+                    "ViewDialogObjName" : "Left",
+                    "ViewDialogBtnObjName" : "Next",
+                    "timeScale" : 0.0,
+                    "timeDelay" : 0
+                },
+                "lsHelp" : [
+                    {
+                        "helpOption" : {
+                            "timeScale" : 0.0,
+                            "timeDelay" : 0
+                        },
+                        "title" : "title01",
+                        "content" : "content01"
+                    }
+                ]
+            }
+        },
+        {
+            "English" : {
+                "helpOption" : {
+        
+                },
+                "lsHelp" : [
+                    
+                ]
+            }
+        }
+    ]
+    
 }
