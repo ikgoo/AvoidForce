@@ -8,6 +8,8 @@ namespace TWOPROLIB.ScriptableObjects
     public class HelpItem : ScriptableObject
     {
         public List<GameObject> ViewObjs;
+
+
     }
 
 }
