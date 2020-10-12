@@ -21,7 +21,7 @@ public class HelpControlEditor : Editor
         {
 
             //ItemEffectTrigger 클래스에서 버튼 누를시 해당 명령을 구현해줍니다.
-            itemtrigger.Run();
+            itemtrigger.RunGenerateList();
         }
         GUILayout.FlexibleSpace();  // 고정된 여백을 넣습니다.
         EditorGUILayout.EndHorizontal();  // 가로 생성 끝

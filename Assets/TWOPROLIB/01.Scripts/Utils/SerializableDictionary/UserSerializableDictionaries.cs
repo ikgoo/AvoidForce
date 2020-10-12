@@ -7,6 +7,10 @@ using TWOPROLIB.ScriptableObjects;
 namespace TWOPRO.Utils
 {
     [Serializable]
+    public class StringGameObjectDictionary : SerializableDictionary<string, GameObject> { }
+
+
+    [Serializable]
     public class StringStringDictionary : SerializableDictionary<string, string> { }
 
     [Serializable]
@@ -30,6 +34,9 @@ namespace TWOPRO.Utils
 
     [Serializable]
     public class MultiLangContentDictionary2 : SerializableDictionary<SystemLanguage, HelpItem1> { }
+
+    [Serializable]
+    public class MultiLangContentDictionary3 : SerializableDictionary<SystemLanguage, TextAsset> { }
 
 
     //public class MultiLangHelpContent : ScriptableObject
