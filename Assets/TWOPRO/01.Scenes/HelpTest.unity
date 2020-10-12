@@ -678,7 +678,119 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cbd8e378db8ae489bdb3ebd0b28ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lsHelp: []
+  lsHelp:
+  - title: Help01-0
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-1
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-2
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-3
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-4
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-5
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-6
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 0
+    AfterView: []
+    AfterHide: []
+  - title: Help01-7
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
+  - title: Help02-0
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
+  - title: Help03-0
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
+  - title: Help04-0
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
+  - title: Help05-0
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
+  - title: Help06-0
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
+  - title: Help06-1
+    HelpObj: 
+    BeforeTimeScale: 0
+    BeforeView: []
+    BeforeHide: []
+    AfterTimeScale: 1
+    AfterView: []
+    AfterHide: []
   lsHelpObject:
     m_keys:
     - Center
