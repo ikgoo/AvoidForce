@@ -1,11 +1,12 @@
 VAR HelpObjName = ""
-VAR TimeScale = 1
+VAR BeforePlay = 0
+VAR AfterPlay = 0       // [Auto]에만 유용함
 
 -> Help01
 
 ========== Help01 ==========
 ~HelpObjName = "Center"
-~TimeScale = 0
+~BeforePlay = 0
 
 Welcome to the world of AVOID FORCE.
 Let's start the tutorial.
@@ -32,10 +33,13 @@ If you impulse a flame on the left and right indicators of the player, the combo
 Additional points are paid.
 *******   [NEXT]
 
+~AfterPlay = 1
 When combo 5 times, special ability is activated.
 ********   [AUTO] -> Help02
 
 ========== Help02 ==========
+~HelpObjName = "Right"
+
 Shield is activated when you combo blue flame 5 times.
 Disable 1 collision.
 * [NEXT] -> Help03
@@ -53,6 +57,7 @@ Pink Flame slows down the flame slightly every 5 combos.
 * [NEXT] -> Help06
 
 ========== Help06 ==========
+~HelpObjName = "Center"
 The ultimate goal of the game is to get a high score and rank it in the upper ranks.
 Get high scores and become the top ranker.
 * [NEXT]

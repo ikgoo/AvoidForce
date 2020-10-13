@@ -153,7 +153,7 @@ namespace TWOPRO.Scripts.TWOPRO
 
                             if (GameManager_Game.Instance.isTutorial.RuntimeValue)
                             {
-                                UIHelpManager.Instance.NextHelpStep();
+                                UIHelpManager.Instance.NextHelpPassExit();
                             }
 
                         }

@@ -116,7 +116,10 @@ namespace TWOPRO.Scripts.Managers
         {
             if (isTutorial.RuntimeValue)
             {
-                UIHelpManager.Instance.SelectHelp(HelpType.Tutorial01);
+                UIHelpManager.Instance.StartHelp(true, () =>
+                {
+                    SetTutorial(false);
+                });
             }
         }
 

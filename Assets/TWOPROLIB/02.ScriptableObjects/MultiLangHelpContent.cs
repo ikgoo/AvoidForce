@@ -31,6 +31,6 @@ namespace TWOPROLIB.ScriptableObjects
             {
                 return ((HelpContent)multiLangContentDictionary[SystemLanguage.English]).content;
             }
-        }
+        }   
     }
 }

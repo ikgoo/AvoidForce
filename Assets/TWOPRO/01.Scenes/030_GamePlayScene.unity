@@ -1881,7 +1881,12 @@ PrefabInstance:
     - target: {fileID: 8363346921864714398, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextHelpStep
+      value: NextHelp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363346921864714398, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5, type: 3}
@@ -4033,7 +4038,7 @@ GameObject:
   - component: {fileID: 744322175}
   - component: {fileID: 744322176}
   m_Layer: 5
-  m_Name: HelpView
+  m_Name: HelpManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4071,186 +4076,105 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697ef9d2d818f7742a8ad62b9f13b520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LsHelpMstView:
-  - helpType: 1
-    HelpView:
-    - title: "\uD29C\uD1A0\uB9AC\uC5BC01"
-      timeScale: 1
-      HelpViewDetail:
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-01"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: 6ed2df8f8b8eb6543aa8157ab3600599,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-02"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        - {fileID: 528472174}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: e7b3118331ab1774081be2bf3d2fc9b4,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-03"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: 67619181b9f131d42b50c1b418c7dccc,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-04"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: dc34d53e34d2cd040bbd8b5b8d2b8069,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-05"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        - {fileID: 212307782}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: af2fd148012701a47950bc1580df96c1,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-06"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: 6b5f125845c3bef4bbeabc68fa4191c5,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-07"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        - {fileID: 315932749}
-        - {fileID: 1430281030}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: 1ca2e9b9d0b58b844804cfec578dd3f0,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-08"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        - {fileID: 1598239959}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: 7b9a4a7e6ddd1674aab2d293544f317f,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC01-09"
-        autoNext: 1
-        HelpViewObj: []
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 0}
-        multiLangHelpContent: {fileID: 0}
-        ViewObj:
-        - {fileID: 106592012}
-      defaultHidden:
-      - {fileID: 42577214}
-      - {fileID: 106592012}
-    - title: "\uD29C\uD1A0\uB9AC\uC5BC2"
-      timeScale: 0
-      HelpViewDetail:
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC02-01"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 533495476}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1228886283}
-        multiLangHelpContent: {fileID: 11400000, guid: 516bd998b1f3c74479a7cd8b2506673f,
-          type: 2}
-        ViewObj: []
-      defaultHidden:
-      - {fileID: 42577214}
-    - title: "\uD29C\uD1A0\uB9AC\uC5BC3"
-      timeScale: 0
-      HelpViewDetail:
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC03-01"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 533495476}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1228886283}
-        multiLangHelpContent: {fileID: 11400000, guid: aaaf2735878c4104caf12ee50a1b19e7,
-          type: 2}
-        ViewObj: []
-      defaultHidden:
-      - {fileID: 42577214}
-    - title: "\uD29C\uD1A0\uB9AC\uC5BC4"
-      timeScale: 0
-      HelpViewDetail:
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC04-01"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 533495476}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1228886283}
-        multiLangHelpContent: {fileID: 11400000, guid: 2e2b815d58ace7c48a6a236277db7285,
-          type: 2}
-        ViewObj: []
-      defaultHidden:
-      - {fileID: 42577214}
-    - title: "\uD29C\uD1A0\uB9AC\uC5BC5"
-      timeScale: 1
-      HelpViewDetail:
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC05-01"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 533495476}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1228886283}
-        multiLangHelpContent: {fileID: 11400000, guid: db25ab20f450fb840bbff1f846cb466a,
-          type: 2}
-        ViewObj: []
-      defaultHidden:
-      - {fileID: 42577214}
-    - title: "\uD29C\uD1A0\uB9AC\uC5BC6"
-      timeScale: 1
-      HelpViewDetail:
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC06-01"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: 9b45e8f9b4ea83f488d3d601bfe4dbe4,
-          type: 2}
-        ViewObj: []
-      - title: "\uD29C\uD1A0\uB9AC\uC5BC06-02"
-        autoNext: 0
-        HelpViewObj:
-        - {fileID: 1577592739}
-        txtTitle: {fileID: 0}
-        txtContext: {fileID: 1577592738}
-        multiLangHelpContent: {fileID: 11400000, guid: d91bd5f324bb1614e9693d923e826b60,
-          type: 2}
-        ViewObj: []
-      defaultHidden:
-      - {fileID: 42577214}
+  lsHelpObject:
+    m_keys:
+    - Center
+    - Right
+    - Left
+    m_values:
+    - {fileID: 1577592739}
+    - {fileID: 1403534446}
+    - {fileID: 533495476}
+  multiLangHelpContent:
+    m_keys: 170000000a000000
+    m_values:
+    - {fileID: 4900000, guid: b5945ab20b88bee4aa3962092c67876e, type: 3}
+    - {fileID: 4900000, guid: 66d76555a36b0a6448e80953013548c2, type: 3}
+  currentHelpIndex: 14
+  lsHelp:
+  - title: Help01-0
+    BeforeView: []
+    BeforeHide:
+    - {fileID: 42577214}
+    - {fileID: 106592012}
+    AfterView: []
+    AfterHide: []
+  - title: Help01-1
+    BeforeView:
+    - {fileID: 528472174}
+    BeforeHide: []
+    AfterView: []
+    AfterHide:
+    - {fileID: 528472174}
+  - title: Help01-2
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help01-3
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help01-4
+    BeforeView:
+    - {fileID: 212307782}
+    BeforeHide: []
+    AfterView: []
+    AfterHide:
+    - {fileID: 212307782}
+  - title: Help01-5
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help01-6
+    BeforeView:
+    - {fileID: 315932749}
+    - {fileID: 1430281030}
+    BeforeHide: []
+    AfterView: []
+    AfterHide:
+    - {fileID: 315932749}
+    - {fileID: 1430281030}
+  - title: Help01-7
+    BeforeView: []
+    BeforeHide: []
+    AfterView:
+    - {fileID: 106592012}
+    - {fileID: 1445109436}
+    AfterHide: []
+  - title: Help02-0
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help03-0
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help04-0
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help05-0
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help06-0
+    BeforeView: []
+    BeforeHide: []
+    AfterView: []
+    AfterHide: []
+  - title: Help06-1
+    BeforeView: []
+    BeforeHide: []
+    AfterView:
+    - {fileID: 42577214}
+    AfterHide: []
 --- !u!1 &770978677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6478,18 +6402,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228222842}
   m_CullTransparentMesh: 0
---- !u!114 &1228886283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8363346921305272539, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1424830994}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1241770576
 GameObject:
   m_ObjectHideFlags: 0
@@ -7125,6 +7037,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395637655}
   m_CullTransparentMesh: 0
+--- !u!1 &1403534446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8363346920396209282, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 406905305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1424830994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7326,7 +7244,12 @@ PrefabInstance:
     - target: {fileID: 8363346921864714398, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextHelpStep
+      value: NextHelp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363346921864714398, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5, type: 3}
@@ -8612,7 +8535,12 @@ PrefabInstance:
     - target: {fileID: 8363346921864714398, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextHelpStep
+      value: NextHelp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363346921864714398, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5, type: 3}
@@ -8622,18 +8550,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1577592736}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1577592738 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8363346921305272539, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1577592736}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1577592739 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8363346920396209282, guid: b1ed2e8d4cdee9b42a28b3d1860b00a5,

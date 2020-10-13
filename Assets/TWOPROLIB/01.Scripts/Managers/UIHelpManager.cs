@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ink.Runtime;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,134 +12,26 @@ using UnityEngine;
 namespace TWOPROLIB.Scripts.Managers
 {
 
-    /// <summary>
-    /// 헬프 상태
-    /// </summary>
-    public enum HelpState
-    {
-        /// <summary>
-        /// 헬프 보임
-        /// </summary>
-        Show,
-        /// <summary>
-        /// 헬프 숨김
-        /// </summary>
-        Hide
-    }
-
-    /// <summary>
-    /// 도움말 종류
-    /// </summary>
-    public enum HelpType
-    {
-        None,
-        Tutorial01,
-
-    }
-
-    /// <summary>
-    /// 헬프 키 단위로 묶여 하나의 도우말 묶음 처리
-    /// </summary>
-    [Serializable]
-    public class UIHelpViewMst
-    {
-        /// <summary>
-        /// 게임 상태
-        /// </summary>
-        [Tooltip("헬프 키")]
-        public HelpType helpType;
-
-        /// <summary>
-        /// 해당 게임에 보여야 할 오브젝트 리스트
-        /// </summary>
-        [Tooltip("해당 게임에 보여야 할 오브젝트 리스트")]
-        public List<UIHelpViewDetail> HelpView;
-
-    }
-
-    /// <summary>
-    /// HelpViewDetail 단위로 도움말을 이어서 출력 해줌
-    /// </summary>
-    [Serializable]
-    public class UIHelpViewDetail
-    {
-        [Tooltip("설명글")]
-        public string title;
-
-        [Tooltip("시간 스케일")]
-        public float timeScale;
-        [Tooltip("상세 뷰")]
-        public List<UIHelpViewDetailStep> HelpViewDetail;
-
-        /// <summary>
-        /// 기본적으로 도움말 시 숨김
-        /// </summary>
-        [Tooltip("기본적으로 도움말 시 숨김")]
-        public List<GameObject> defaultHidden;
-
-    }
-
-    /// <summary>
-    /// 한번 표현할 도움말
-    /// </summary>
-    [Serializable]
-    public class UIHelpViewDetailStep
-    {
-        [Tooltip("설명글")]
-        public string title;
-
-        [Tooltip("자동 다음 처리")]
-        public bool autoNext = false;
-
-        /// <summary>
-        /// 보여질 이미지
-        /// </summary>
-        [Tooltip("보여질 이미지")]
-        public List<GameObject> HelpViewObj;
-
-
-        public TextMeshProUGUI txtTitle;
-
-        public TextMeshProUGUI txtContext;
-        
-        /// <summary>
-        /// 타이틀, 내용을 언어별 등록
-        /// </summary>
-        [Tooltip("타이틀, 내용을 언어별 등록")]
-        public MultiLangHelpContent multiLangHelpContent;
-
-        [Tooltip("현재 시점부터 보여질 게임 오브젝트")]
-        public List<GameObject> ViewObj;
-    }
-
     public class UIHelpManager : MonoBehaviour
     {
-        //public MultiLangContentDictionary2 helpMainData;
-        public HelpMainData helpMainData;
+        private Story story;
 
         /// <summary>
-        /// 현재 진행중인 도움말 타입
+        /// Help때 문구가 보여일 GameObject List
         /// </summary>
-        private HelpType currentHelpType;
-
+        public StringGameObjectDictionary lsHelpObject;
 
         /// <summary>
-        /// 보여지 헬프 VIEW
+        /// Ink로 등록 된 Help(언어별 리스트)
         /// </summary>
-        private List<UIHelpViewDetail> currentHelpView;
+        public MultiLangContentDictionary3 multiLangHelpContent;
+
+        public int currentHelpIndex = 0;
 
         /// <summary>
-        /// 헬프 단계
+        /// Ink에서 받은 정보 리스트
         /// </summary>
-        private int currentHelpViewMstStep;
-
-        /// <summary>
-        /// 헬프 단계(상세)
-        /// </summary>
-        private int currentHelpViewDetailStep;
-
-        public List<UIHelpViewMst> LsHelpMstView;
-
+        public List<HelpItem> lsHelp;
 
         public static UIHelpManager Instance = null;
         void Awake()
@@ -155,241 +48,243 @@ namespace TWOPROLIB.Scripts.Managers
 
         void Start()
         {
-            InitHelp("help");
+            // Help Object Hide 처리
+            foreach (var obj in lsHelpObject)
+            {
+                obj.Value.SetActive(false);
+            }
+
+        }
+
+        /// <summary>
+        /// 도움말 관련 리스트 생성
+        /// </summary>
+        public void RunGenerateList()
+        {
+            Debug.Log("start");
+
             InitHelp();
-            AllHelpHide();
-        }
 
-        private void InitHelp(string textAssetName)
-        {
-            TextAsset targetFile = Resources.Load<TextAsset>("ScriptableObjects/HelpControll/" + textAssetName.Replace(".json", ""));
-
-            try
+            int cnt = 0;
+            string tmp_head = "";
+            while (true)
             {
-                helpMainData = JsonUtility.FromJson<HelpMainData>(targetFile.text);
-            }
-            catch(Exception ex)
-            {
-                int i = 0;
-            }
-        }
-
-
-        /// <summary>
-        /// 초기화
-        /// </summary>
-        private void InitHelp()
-        {
-            currentHelpViewMstStep = 0;
-            currentHelpViewDetailStep = 0;
-        }
-
-        /// <summary>
-        /// 도움말 표현 
-        /// </summary>
-        /// <param name="helpType">선택한 헬프 타입이 보여짐</param>
-        /// <param name="isInit">헬프 step 초기와 유무</param>
-        public void SelectHelp(HelpType helpType, bool isInit = true)
-        {
-            this.currentHelpType = helpType; ;
-
-            // VIEW 선택
-            for (int i = 0; i < LsHelpMstView.Count; i++)
-            {
-                if (LsHelpMstView[i].helpType.Equals(helpType))
+                if (story.currentChoices.Count > 0)
                 {
-                    currentHelpView = LsHelpMstView[i].HelpView;
-                }
-            }
-
-            // VIEW Step 초기화
-            if (isInit)
-            {
-                InitHelp();
-            }
-
-            DefaultHiddenProc(false);
-
-            Invoke("ShowHelpStep", 0.1f);
-
-        }
-
-        /// <summary>
-        /// 현재 상태의 헬프를 표현
-        /// </summary>
-        private void ShowHelpStep()
-        {
-            //AllHelpHide();
-
-            // 도움말에 기본적으로 숨김 처리하는 오브젝트
-
-
-            if(currentHelpView[currentHelpViewMstStep].timeScale != -1)
-                Time.timeScale = currentHelpView[currentHelpViewMstStep].timeScale;
-
-            // 해당 헬프 문구 관련 오브젝트를 보여주도록 처리
-            for (int i = 0; i < currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewObj.Count; i++)
-            {
-                if(currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewObj[i] != null)
-                    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewObj[i].SetActive(true);
-            }
-
-            // 해당 헬프 부터 보여질 오브젝트를 처리
-            for (int i = 0; i < currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].ViewObj.Count; i++)
-            {
-                if (currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].ViewObj[i] != null)
-                    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].ViewObj[i].SetActive(true);
-            }
-
-            // 제목
-            if (currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].txtTitle != null)
-            {
-                currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].txtTitle.text =
-                    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].multiLangHelpContent.GetTitle();
-            }
-
-            // 내용
-            if(currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].txtContext != null)
-            {
-                currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].txtContext.text =
-                    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].multiLangHelpContent.GetContent();
-            }
-
-
-            //if (GameManager.Instance.systemLanguage == SystemLanguage.)
-            //{
-            //    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewText.text =
-            //        GameManager.Instance.systemLanguage.RuntimeValue == (int)SystemLanguage.Korean
-            //                ? currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpString_Kor
-            //                : currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpString_Eng;
-            //}
-
-            //if (currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewText)
-            //{
-            //    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewText.text =
-            //        GameManager.Instance.systemLanguage.RuntimeValue == (int)SystemLanguage.Korean
-            //                ? currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpString_Kor
-            //                : currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpString_Eng;
-            //}
-
-            // 자동 다음 스텝으로 넘김
-            // 멘트가 아닌 이미지 뷰, 히든 처리용으로 사용
-            if (currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].autoNext)
-                NextHelpStep();
-        }
-
-        /// <summary>
-        /// 헬프 후 다시 플레이
-        /// </summary>
-        public void NextHelpAfterPlay()
-        {
-            Time.timeScale = 1;
-        }
-
-        public virtual void HelpDone()
-        {
-            switch(currentHelpType)
-            {
-                case HelpType.Tutorial01:
-                    GameManager.Instance.SetTutorial(false);
-                    break;
-            }
-        }
-
-        private void AllHelpHide()
-        {
-            for (int i = 0; i < LsHelpMstView.Count; i++)
-            {
-                for (int j = 0; j < LsHelpMstView[i].HelpView.Count; j++)
-                {
-                    for (int z = 0; z < LsHelpMstView[i].HelpView[j].HelpViewDetail.Count; z++)
+                    if (lsHelp.Count < currentHelpIndex + 1)
                     {
-                        if(LsHelpMstView[i].HelpView[j].HelpViewDetail[z].HelpViewObj != null)
-                        {
-                            for(int e = 0; e < LsHelpMstView[i].HelpView[j].HelpViewDetail[z].HelpViewObj.Count; e++)
-                            {
-                                if(LsHelpMstView[i].HelpView[j].HelpViewDetail[z].HelpViewObj[e] != null)
-                                    LsHelpMstView[i].HelpView[j].HelpViewDetail[z].HelpViewObj[e].SetActive(false);
-                            }
-                        }
+                        tmp_head = story.state.previousPointer.path.head.name;
+                        lsHelp.Add(new HelpItem(tmp_head + "-" + cnt.ToString()));
                     }
-                }
-            }
-        }
 
-        /// <summary>
-        /// 도움말에 기본적으로 숨김 처리하는 오브젝트
-        /// </summary>
-        /// <param name="b"></param>
-        private void DefaultHiddenProc(bool b = false)
-        {
-            // 도움말에 기본적으로 숨김 처리하는 오브젝트
-            for (int i = 0; i < currentHelpView[currentHelpViewMstStep].defaultHidden.Count; i++)
-            {
-                currentHelpView[currentHelpViewMstStep].defaultHidden[i].SetActive(b);
-            }
+                    story.ChooseChoiceIndex(0);
 
-        }
+                    getNextStoryBlock();
 
-        public void NextHelpStep()
-        {
-            // 시작할 가치가 없음
-            if (currentHelpView == null || currentHelpView.Count <= currentHelpViewMstStep)
-            {
-                return;
-            }
+                    try
+                    {
+                        if (story.state.previousPointer.path != null && tmp_head.Equals(story.state.previousPointer.path.head.name))
+                            cnt++;
+                        else
+                            cnt = 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        int iii = 0;
+                    }
 
-            if (currentHelpView[currentHelpViewMstStep].HelpViewDetail.Count <= currentHelpViewDetailStep)
-            {
-                // currentHelpViewDetailStep 스템을 넘기기 이전에 이미 넘어갔으므로
-                // currentHelpViewMstStep을 증가해서 처리
-                DefaultHiddenProc(true);        // 현 STEP이 종료이므로 현 STEP 의 기본 숨김을 풀어줌
-                currentHelpViewMstStep++;
-                currentHelpViewDetailStep = 0;
-
-                if (currentHelpView.Count <= currentHelpViewMstStep)
-                {
-                    // Helpviewstep마져 넘어갔으므로 완전히 도움말이 끝난것임
-                    HelpDone();
-                    return;
                 }
                 else
-                {
-                    DefaultHiddenProc(false);       // 다음 STEP으로 넘어갔으므로 현 STEP의 기본 숨김 처리
-                    ShowHelpStep();
-                    return;
-                }
+                    break;
+            }
+            Debug.Log("end");
+        }
+
+        System.Action act;
+
+        /// <summary>
+        /// Help 시작
+        /// </summary>
+        /// <param name="b"></param>
+        public void StartHelp(bool b = false, System.Action act = null)
+        {
+            this.act = act;
+
+            InitHelp();
+
+            // Help Object Hide 처리
+            foreach (var obj in lsHelpObject)
+            {
+                obj.Value.SetActive(false);
             }
 
-            // 해당 헬프에서 보여줬던 문구를 다시 숨김
-            for(int i = 0; i < currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewObj.Count; i++)
+            if (b)
+                BeforeView();
+        }
+
+        string CurrentHelpObjName = "";
+        float CurrentBeforePlay = 0f;
+        float CurrentAfterPlay = 0f;
+        string CurrentText = "";
+
+        TextMeshProUGUI title;
+        TextMeshProUGUI content;
+
+        public void BeforeView()
+        {
+            CurrentHelpObjName = story.variablesState["HelpObjName"].ToString();
+            CurrentBeforePlay = float.Parse(story.variablesState["BeforePlay"].ToString());
+            CurrentAfterPlay = float.Parse(story.variablesState["AfterPlay"].ToString());
+
+            lsHelpObject[CurrentHelpObjName].SetActive(true);
+
+            TextMeshProUGUI[] tmp_ls = lsHelpObject[CurrentHelpObjName].GetComponentsInChildren<TextMeshProUGUI>();
+            if (tmp_ls.Length == 2)
             {
-                if(currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewObj[i] != null)
-                    currentHelpView[currentHelpViewMstStep].HelpViewDetail[currentHelpViewDetailStep].HelpViewObj[i].SetActive(false);
+                title = null;
+                content = tmp_ls[0];
+            }
+            else if (tmp_ls.Length == 3)
+            {
+                title = tmp_ls[0];
+                content = tmp_ls[1];
             }
 
-            currentHelpViewDetailStep++;
-            if (currentHelpView[currentHelpViewMstStep].HelpViewDetail.Count > currentHelpViewDetailStep)
+            content.text = CurrentText;
+            if (title && story.currentTags.Count > 0)
+                title.text = story.currentTags[0];
+
+            Time.timeScale = CurrentBeforePlay;
+            // View Object
+            ProcViewHide(lsHelp[currentHelpIndex].BeforeView, true);
+            // Hide Object
+            ProcViewHide(lsHelp[currentHelpIndex].BeforeHide, false);
+
+            if (story.currentChoices[0].text.Equals("AUTO") )
             {
-                ShowHelpStep();
-                return;
+                AfterView();
+            }
+        }
+
+        public void AfterView()
+        {
+            lsHelpObject[CurrentHelpObjName].SetActive(false);
+
+            Time.timeScale = CurrentAfterPlay;
+            // View Object
+            ProcViewHide(lsHelp[currentHelpIndex].AfterView, true);
+            // Hide Object
+            ProcViewHide(lsHelp[currentHelpIndex].AfterHide, false);
+        }
+
+        public void InitHelp()
+        {
+            currentHelpIndex = -1;
+
+            if (multiLangHelpContent.ContainsKey(Application.systemLanguage))
+            {
+                story = new Story(multiLangHelpContent[Application.systemLanguage].text);
             }
             else
             {
+                // 기본은 영문으로 표현
+                story = new Story(multiLangHelpContent[SystemLanguage.English].text);
+            }
 
-                // 상세 스템이 끝났음으로 한타임 쉬고 다시 호출시 메인부분을 변경해서 다시 처리함
-                Time.timeScale = 1;
+            CurrentText = getNextStoryBlock();
 
-                if (currentHelpView[currentHelpViewMstStep].HelpViewDetail.Count <= currentHelpViewDetailStep + 1 && (currentHelpView.Count <= currentHelpViewMstStep + 1))
-                {
-                    DefaultHiddenProc(true);        // 현 STEP이 종료이므로 현 STEP 의 기본 숨김을 풀어줌
-                    currentHelpViewMstStep++;
-                    currentHelpViewDetailStep = 0;
-                    HelpDone();
-                }
+        }
+
+        bool isPassExit = false;
+
+        public void NextHelpPassExit(int choice = 0)
+        {
+            isPassExit = true;
+            NextHelp(choice);
+        }
+
+        public void NextHelp(int choice = 0)
+        {
+            if (story.currentChoices[0].text.Equals("EXIT") && isPassExit == false)
+            {
+                AfterView();
                 return;
             }
+            isPassExit = false;
+
+            if (story.currentChoices[0].text.Equals("NEXT"))
+            {
+                AfterView();
+            }
+
+
+            story.ChooseChoiceIndex(choice);
+
+            CurrentText = getNextStoryBlock();
+
+            // 다음이 없으면 종료 처리
+            if (CurrentText.Equals(""))
+            {
+                Time.timeScale = 1;
+                if(this.act != null)
+                    this.act();
+
+                return;
+            }
+
+            BeforeView();
         }
+
+        public void ProcViewHide(List<GameObject> obj, bool v)
+        {
+            for (int i = 0; i < obj.Count; i++)
+            {
+                obj[i].SetActive(v);
+            }
+        }
+
+        // Load and potentially return the next story block
+        string getNextStoryBlock()
+        {
+            currentHelpIndex++;
+
+            string text = "";
+
+            if (story.canContinue)
+            {
+                text = story.ContinueMaximally();
+            }
+
+            return text;
+        }
+
+        [Serializable]
+        public class HelpItem
+        {
+            [SerializeField]
+            private string title;
+
+            /// <summary>
+            /// Help 시 보여질 TextBox Name
+            /// </summary>
+            //public String HelpObj;
+
+            //public float BeforeTimeScale;
+            public List<GameObject> BeforeView;
+            public List<GameObject> BeforeHide;
+
+            //public float AfterTimeScale;
+            public List<GameObject> AfterView;
+            public List<GameObject> AfterHide;
+
+
+            public HelpItem(string title)
+            {
+                this.title = title;
+            }
+        }
+
+
 
     }
 

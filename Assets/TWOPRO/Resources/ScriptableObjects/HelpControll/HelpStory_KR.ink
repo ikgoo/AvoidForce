@@ -6,9 +6,9 @@ VAR AfterPlay = 0       // [Auto]에만 유용함
 
 ========== Help01 ==========
 ~HelpObjName = "Center"
-~BeforePlay = 0
+~BeforePlay = 1
 
-AVOID FORCE 세계에 오신걸 환영 합니다.{HelpObjName}
+AVOID FORCE 세계에 오신걸 환영 합니다.
 튜토리얼을 시작하겠습니다.
 *   [NEXT]
 
@@ -32,28 +32,36 @@ AVOID FORCE 세계에 오신걸 환영 합니다.{HelpObjName}
 플레이어의 좌우 표시부분에 불꽃을 충동하면 콤보 카운트가 올라가고
 추가 점수가 지급 됩니다.
 *******   [NEXT]
+
 ~AfterPlay = 1
 5번 콤보 시 특수 능력이 발동 됩니다.
-********   [AUTO] -> Help02
+********   [EXIT] -> Help02
 
 ========== Help02 ==========
+~HelpObjName = "Left"
+~BeforePlay = 0
+~AfterPlay = 1
+
 푸른색 불꽃을 5회 콤보 시 실드가 발동됩니다.
 충돌 1회를 무효화 합니다.
-* [NEXT] -> Help03
+* [EXIT] -> Help03
 
 ========== Help03 ==========
 녹색 불꽃을 5회 콤보 시 보이는 불꽃을 단일 색으로 바꿈니다
-* [NEXT] -> Help04
+* [EXIT] -> Help04
 
 ========== Help04 ==========
 붉은 불꽃은 5회 콤보 이후부터 콤보마다 추가 접수가 누적 지급 됩니다.
-* [NEXT] -> Help05
+* [EXIT] -> Help05
 
 ========== Help05 ==========
+~BeforePlay = 0
+~AfterPlay = 0
 핑크 불꽃은 5회 콤보 마다 불꽃의 속도를 조금씩 느리게 합니다.
 * [NEXT] -> Help06
 
 ========== Help06 ==========
+~HelpObjName = "Center"
 게임의 최종 목적은 높은 점수를 얻어 상위 랭크에 등급하는 것입니다.
 높은 점수를 얻어 탑 랭커가 되어 보세요.
 * [NEXT]
