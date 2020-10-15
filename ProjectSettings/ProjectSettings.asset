@@ -170,9 +170,9 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.HSGAMES.AvoidForce
   buildNumber: {}
-  AndroidBundleVersionCode: 38
+  AndroidBundleVersionCode: 41
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 29
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -248,7 +248,7 @@ PlayerSettings:
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: '{inproject}: user.keystore'
-  AndroidKeyaliasName: hsgames
+  AndroidKeyaliasName: 2pro
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

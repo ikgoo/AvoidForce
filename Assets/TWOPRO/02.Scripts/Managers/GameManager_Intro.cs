@@ -36,16 +36,17 @@ namespace TWOPRO.Scripts.Managers
             // 튜토리얼 정보 세팅
             GetTutorial();
 
+
 #if UNITY_EDITOR
             DebugX.Log("Unity Editor 상태");
             yield return new WaitForSeconds(1.3f);
 #else
-            // 인터넷 확인
 
 
             // 구글 로그인
 
 #endif
+
 
             yield return new WaitForSeconds(1.3f);
 
@@ -53,5 +54,6 @@ namespace TWOPRO.Scripts.Managers
             ScreenManager.Instance.ChangeScene(ScreenManager.ScenePage.MENU);
 
         }
+
     }
 }

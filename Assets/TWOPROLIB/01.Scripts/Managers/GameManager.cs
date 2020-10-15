@@ -248,6 +248,8 @@ namespace TWOPROLIB.Scripts.Managers
         /// </summary>
         public virtual void GameRunning()
         {
+            Time.timeScale = 1;
+
             // play 상태를 초기화로 전환
             ChangePlayState(PlayStateType.Init);
 
