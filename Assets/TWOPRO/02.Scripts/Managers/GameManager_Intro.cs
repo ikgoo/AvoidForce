@@ -22,38 +22,57 @@ namespace TWOPRO.Scripts.Managers
 
             AudioManager.Instance.PlayMusicTrack(0);
 
-            StartCoroutine("InitIntro");
 
-        }
-
-        /// <summary>
-        /// 인트로 중 초기화 처리 
-        /// 배경 버벅임을 박기 위해 코루틴 사용
-        /// </summary>
-        /// <returns></returns>
-        IEnumerator InitIntro()
-        {
             // 튜토리얼 정보 세팅
             GetTutorial();
 
 
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                Debug.Log("Error. Check internet connection!");
+            }
+            else
+            {
+
 #if UNITY_EDITOR
-            DebugX.Log("Unity Editor 상태");
-            yield return new WaitForSeconds(1.3f);
+                StartCoroutine("InitIntro");
 #else
 
-
-            // 구글 로그인
+                try
+                {
+                    // 구글 로그인
+                    GooglePlayManager.Instance.OnLogin();
+                    GotoMainMenu();
+                }
+                catch { }
+                finally
+                {
+                    GotoMainMenu();
+                }
 
 #endif
 
+            }
 
-            yield return new WaitForSeconds(1.3f);
+            /// <summary>
+            /// 인트로 중 초기화 처리 
+            /// 배경 버벅임을 박기 위해 코루틴 사용
+            /// </summary>
+            /// <returns></returns>
+            IEnumerator InitIntro()
+            {
+                yield return new WaitForSeconds(1.3f);
 
-            // 다음 신으로 이동(메뉴)
-            ScreenManager.Instance.ChangeScene(ScreenManager.ScenePage.MENU);
+                GotoMainMenu();
+
+            }
+
+            void GotoMainMenu()
+            {
+                // 다음 신으로 이동(메뉴)
+                ScreenManager.Instance.ChangeScene(ScreenManager.ScenePage.MENU);
+            }
 
         }
-
     }
 }
